@@ -4,7 +4,6 @@ import flatspec._
 import Main.nth
 class MemorySpec extends AnyFlatSpec with should.Matchers {
   "nth" should "answer the examples correctly" in {
-    nth("0,3,6", 4) should be (0)
     nth("0,3,6", 10) should be (0)
     nth("0,3,6", 2020) should be (436)
     nth("1,3,2", 2020) should be (1)
