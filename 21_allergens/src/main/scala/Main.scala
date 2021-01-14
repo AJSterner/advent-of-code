@@ -30,7 +30,7 @@ def translateAllergens(aMap: AllergenMap): Map[String, String] =
   translate(aMap, Map[String, Set[String]]())
 
 def pt1(aMap: AllergenMap, foods: Iterable[Food]) =
-  val possibleAllergens = aMap.foldLeft(aMap.head._2)((s, f) => s | f._2)
+  val possibleAllergens = aMap.map(_._2).reduce(_ | _)
   foods.foldLeft(0)(_ + _._1.count(i => !possibleAllergens(i)))
 
 def pt2(aMap: AllergenMap) = translateAllergens(aMap).toVector.sortBy(_._1).map(_._2).mkString(",")
