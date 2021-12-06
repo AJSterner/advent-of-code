@@ -6,18 +6,18 @@ class BingoBoard():
         self.board = np.array([int(n) for n in board_text.split()]).reshape((5, 5))
         self.marked = np.full((5, 5), False)
         self.indeces = {n : idx for idx, n in np.ndenumerate(self.board)}
-        assert(len(self.indeces) == 25)
-    
+
     def mark(self, n):
         if not n in self.indeces:
             return False
         idx = self.indeces[n]
         self.marked[idx] = True
         return self.won(idx)
-    
+
     def won(self, last_mark_idx):
-        return all(self.marked[last_mark_idx[0]]) or all(self.marked[:, last_mark_idx[1]])
-    
+        x, y = last_mark_idx
+        return all(self.marked[x]) or all(self.marked[:, y])
+
     def score(self):
         return self.board[~self.marked].sum()
 
